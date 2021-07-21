@@ -9,10 +9,11 @@
     <link rel="shortcut icon" href="Images/logo.png">
 </head>
 <body>
+    <!-- info button & scores -->
     <img src="Images/info.png" alt="Info" onclick="info()" id="info">
     <div id="scores">
         <div>
-            <h1 class="score" id="user-score">0</h1>
+            <h1 class="score" id="player-score">0</h1>
             <h2>You</h2>
         </div>
         <h1 id="score-heading">Score</h1>
@@ -21,16 +22,20 @@
             <h2>CPU</h2>
         </div>
     </div>
+
+    <!-- selection area -->
     <h1 id="heading">Select Your Element</h1>
-    <div id="user-selection-area">
-        <img src="Images/Grass.png" alt="Grass Element" class="elements" id="grass-element">
-        <img src="Images/Fire.png" alt="Fire Element" class="elements" id="fire-element">
-        <img src="Images/Water.png" alt="Water Element" class="elements" id="water-element">
+    <div id="player-selection-area">
+        <img src="Images/0.png" alt="Grass Element" class="elements" id="grass-element" onclick="select(0)">
+        <img src="Images/1.png" alt="Fire Element" class="elements" id="fire-element" onclick="select(1)">
+        <img src="Images/2.png" alt="Water Element" class="elements" id="water-element" onclick="select(2)">
     </div>
+
+    <!-- fight area & result -->
     <div id="battle-ground">
         <div id="white-overlay">
             <div class="selection-area">
-                <div class="selection" id="user-selection"></div>
+                <div class="selection" id="player-selection"></div>
                 <h2>You</h2>
             </div>
             <div class="selection-area">
@@ -41,7 +46,8 @@
     </div>
     <h1 id="verdict"></h1>
     
-    <div id="black-overlay" onclick="closeModal()"></div>
+    <!-- modal & overlay -->
+    <div id="black-overlay"></div>
     <div id="modal">
         <h1>Rules</h1>
         <img src="Images/Rules.png" alt="Rules">
