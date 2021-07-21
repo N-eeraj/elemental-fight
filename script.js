@@ -68,3 +68,15 @@ function select(playerSelection)
             playerWin();
     }
 }
+
+// function to reset scores
+function reset()
+{
+    playerScore.innerText = 0;
+    cpuScore.innerText = 0;
+    
+    playerSelected.style.backgroundImage = "none";
+    CPUSelected.style.backgroundImage = "none";
+
+    closeModal();
+}
