@@ -40,7 +40,7 @@ function playerWin()
 function select(playerSelection)
 {
     cpuSelection = Math.floor(Math.random() * 3);
-    console.log(playerSelection+":"+cpuSelection)
+    
     playerSelected.style.backgroundImage = "url(Images/" + playerSelection + ".png)";
     CPUSelected.style.backgroundImage = "url(Images/" + cpuSelection + ".png)";
 
