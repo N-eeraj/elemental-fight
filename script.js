@@ -74,6 +74,7 @@ function reset()
 {
     playerScore.innerText = 0;
     cpuScore.innerText = 0;
+    result.innerText = "";
     
     playerSelected.style.backgroundImage = "none";
     CPUSelected.style.backgroundImage = "none";

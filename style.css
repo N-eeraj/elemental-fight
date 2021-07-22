@@ -24,7 +24,6 @@ body{
     cursor: pointer;
     transition: 0.5s;
 }
-#info:hover{transform: scale(1.1);}
 
 /* score section */
 #scores{
@@ -126,6 +125,7 @@ body{
     font-size: 1.5rem;
     border-radius: 24px;
     border: none;
+    cursor: pointer;
 }
 
 /* tab portrait media queries */
@@ -157,6 +157,7 @@ body{
     #info{
         margin-top: 0;
         transform: scale(0.5);
+        z-index: 1;
     }
     #scores{
         position: fixed;
@@ -179,5 +180,35 @@ body{
     .modal-buttons{
         width: 30%;
         font-size: 1rem;
+    }
+}
+
+@media (orientation: landscape) and (min-width: 1024px)
+{
+    body{font-size: 1.5rem;}
+    #scores{top: 3vh;}
+    #heading{
+        margin-top: 3vh;
+        font-size: 2.2rem;
+    }
+    .elements{width: 10%;}
+    .selection{height: 60%;}
+    #modal{
+        height: 75vh;
+        width: 60vw;
+    }
+    #modal img{width: 50%;}
+    .modal-buttons{font-size: 1.5rem;}
+}
+
+@media (orientation: landscape) and (min-width: 1024px) and (min-aspect-ratio: 2/1)
+{
+    #heading{margin-top: -5vh;}
+    .elements{width: 7%;}
+    .selection{height: 80%;}
+    #modal img{width: 30%;}
+    .modal-buttons{
+        width: 20%;
+        padding: 1%;
     }
 }
