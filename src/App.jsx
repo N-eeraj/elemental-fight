@@ -1,9 +1,15 @@
-import { useState } from 'react'
+import {
+  useState,
+  useEffect,
+  createContext,
+} from 'react'
 
 import Home from '@screens/Home'
 import SinglePlayer from '@screens/SinglePlayer'
 import MultiPlayer from '@screens/MultiPlayer'
 import Rules from '@screens/Rules'
+
+export const ScreenContext = createContext()
 
 const App = () => {
   const [screen, setScreen] = useState('home')
@@ -23,9 +29,15 @@ const App = () => {
     }
   })()
 
+  useEffect(() => {
+    window.onbeforeunload = () => true
+  }, [])
+
   return (
     <div className='w-screen h-screen'>
-      {currentScreen}
+      <ScreenContext.Provider value={{ setScreen }}>
+        {currentScreen}
+      </ScreenContext.Provider>
     </div>
   )
 }
