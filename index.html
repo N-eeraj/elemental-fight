@@ -1,61 +1,12 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Element Fight</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="shortcut icon" href="Images/logo.png">
-</head>
-<body>
-    <!-- info button & scores -->
-    <img src="Images/info.png" alt="Info" onclick="info()" id="info">
-    <div id="scores">
-        <div>
-            <h1 class="score" id="player-score">0</h1>
-            <h2>You</h2>
-        </div>
-        <h1 id="score-heading">Score</h1>
-        <div>
-            <h1 class="score" id="cpu-score">0</h1>
-            <h2>CPU</h2>
-        </div>
-    </div>
-
-    <!-- selection area -->
-    <h1 id="heading">Select Your Element</h1>
-    <div id="player-selection-area">
-        <img src="Images/0.png" alt="Grass Element" class="elements" id="grass-element" onclick="select(0)">
-        <img src="Images/1.png" alt="Fire Element" class="elements" id="fire-element" onclick="select(1)">
-        <img src="Images/2.png" alt="Water Element" class="elements" id="water-element" onclick="select(2)">
-    </div>
-
-    <!-- fight area & result -->
-    <div id="battle-ground">
-        <div id="white-overlay">
-            <div class="selection-area">
-                <div class="selection" id="player-selection"></div>
-                <h2>You</h2>
-            </div>
-            <div class="selection-area">
-                <div class="selection" id="cpu-selection"></div>
-                <h2>CPU</h2>
-            </div>
-        </div>
-    </div>
-    <h1 id="verdict"></h1>
-    
-    <!-- modal & overlay -->
-    <div id="black-overlay"></div>
-    <div id="modal">
-        <h1>Rules</h1>
-        <img src="Images/Rules.png" alt="Rules">
-        <div id="modal-button-container">
-            <button class="modal-buttons" onclick="closeModal()">Close</button>
-            <button class="modal-buttons" onclick="reset()">Reset</button>
-        </div>
-    </div>
-</body>
-<script src="script.js"></script>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Elemental Fight</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>
