@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: '#105',
+        primary: '#103',
         accent: '#315',
         element: {
           water: '#2B99FF',

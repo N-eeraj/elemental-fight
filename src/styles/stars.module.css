@@ -1,0 +1,37 @@
+.star {
+  width: 3px;
+  height: 3px;
+  box-shadow: 0 0 10px 1px #FFF,
+  0 0 20px 2px #FFF,
+  0 0 30px 3px #FFF,
+  0 0 40px 4px #FFF;
+  animation: twinkling linear infinite 3s;
+}
+
+
+@keyframes twinkling {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+
+  30% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  80% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+}
