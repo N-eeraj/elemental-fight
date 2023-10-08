@@ -16,6 +16,10 @@ export default {
           fire: '#FF662E',
           lightning: '#FFDF00',
         }
+      },
+      fontFamily: {
+        title: ['Iceberg', 'cursive'],
+        body: ['Montserrat', 'sans-serif'],
       }
     },
   },

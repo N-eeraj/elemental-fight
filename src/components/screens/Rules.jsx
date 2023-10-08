@@ -1,6 +1,8 @@
 const Rules = () => {
   return (
-    <div>Rules</div>
+    <div className='magestic-screen'>
+      
+    </div>
   )
 }
 

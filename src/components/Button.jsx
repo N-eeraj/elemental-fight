@@ -1,6 +1,6 @@
-const Button = ({ onClick, children }) => {
+const Button = ({ children, className, onClick }) => {
   return (
-    <button className='group relative' onClick={onClick}>
+    <button className={`group relative ${className}`} onClick={onClick}>
       <div className='w-full p-5 bg-white text-primary text-3xl group-active:translate-x-1 group-active:translate-y-1 duration-300'>
         {children}
       </div>

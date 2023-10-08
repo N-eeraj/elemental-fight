@@ -17,13 +17,13 @@ const Home = () => {
     <>
       <Stars />
 
-      <div className='flex flex-col justify-center items-center gap-y-20 md:gap-y-12 w-full h-full px-10 bg-gradient-to-b from-accent to-primary'>
-        <h1 className='text-white text-6xl text-center leading-tight'>
+      <div className='flex flex-col justify-center items-center gap-y-20 md:gap-y-12 magestic-screen px-10'>
+        <h1 className='text-white text-6xl md:text-7xl text-center font-title leading-tight'>
           Elemental Fight
         </h1>
 
         <div className='flex flex-col gap-y-6 w-full max-w-xs'>
-          {menuOptions.map(({text, value}, index) => <Button onClick={() => setScreen(value)} key={index}> {text} </Button>)}
+          {menuOptions.map(({text, value}, index) => <Button className='font-title' key={index} onClick={() => setScreen(value)}> {text} </Button>)}
         </div>
       </div>
     </>
