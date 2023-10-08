@@ -13,7 +13,7 @@ const Star = () => {
     const newPositionX = Math.random() * 110 - 5
     const newPositionY = Math.random() * 110 - 5
 
-    const time = Math.sqrt((newPositionY - position.current.y) ** 2 + (newPositionX - position.current.x) ** 2) * 600
+    const time = Math.sqrt((newPositionY - position.current.y) ** 2 + (newPositionX - position.current.x) ** 2) * 500
 
     position.current.x = newPositionX
     position.current.y = newPositionY
