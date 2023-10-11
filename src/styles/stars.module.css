@@ -1,10 +1,36 @@
+:root {
+  --shadow-1: 0 0 10px 1px;
+  --shadow-2: 0 0 20px 2px;
+  --shadow-3: 0 0 30px 3px;
+  --shadow-4: 0 0 40px 4px;
+
+  --cool: #0AF;
+  --light: #FFF;
+  --warm: #FFA;
+
+  --warm-shadow:
+    var(--shadow-1) var(--warm),
+    var(--shadow-2) var(--warm),
+    var(--shadow-3) var(--warm),
+    var(--shadow-4) var(--warm);
+
+  --light-shadow:
+    var(--shadow-1) var(--light),
+    var(--shadow-2) var(--light),
+    var(--shadow-3) var(--light),
+    var(--shadow-4) var(--light);
+
+  --cool-shadow:
+    var(--shadow-1) var(--cool),
+    var(--shadow-2) var(--cool),
+    var(--shadow-3) var(--cool),
+    var(--shadow-4) var(--cool);
+}
+
 .star {
   width: 3px;
   height: 3px;
-  box-shadow: 0 0 10px 1px #FFF,
-  0 0 20px 2px #FFF,
-  0 0 30px 3px #FFF,
-  0 0 40px 4px #FFF;
+  box-shadow: var(--light-shadow);
   animation: twinkling linear infinite 5s;
 }
 
@@ -16,16 +42,24 @@
   }
 
   25% {
+    box-shadow: var(--cool-shadow);
     opacity: 0;
-    transform: scale(0.5);
-  }
-
-  75% {
-    opacity: 1;
     transform: scale(1.2);
   }
 
+  60% {
+    box-shadow: var(--light-shadow);
+    opacity: 1;
+    transform: scale(0.5);
+  }
+
+  80% {
+    box-shadow: var(--warm-shadow);
+    transform: scale(0.8);
+  }
+
   100% {
+    box-shadow: var(--light-shadow);
     opacity: 1;
     transform: scale(0.5);
   }
