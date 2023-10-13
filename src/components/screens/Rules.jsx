@@ -17,8 +17,8 @@ const Rules = () => {
         </h2>
       </div>
 
-      <div className='h-full overflow-y-auto text-white'>
-        <ul className='flex flex-col gap-y-5 w-full px-10 list-disc text-xl md:text-2xl font-body'>
+      <div className='flex flex-col items-center gap-y-5 h-full overflow-y-auto px-10 text-white'>
+        <ul className='flex flex-col gap-y-5 w-full list-disc text-xl md:text-2xl font-body'>
           <li>
             Elemental Fight is a game similar to rock paper scissors.
           </li>
@@ -37,6 +37,8 @@ const Rules = () => {
             First to score 3 points win.
           </li>
         </ul>
+
+        <img src='/rules.svg' className='w-full max-w-md' />
       </div>
     </div>
   )
