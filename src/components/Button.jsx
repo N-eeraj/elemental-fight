@@ -1,6 +1,8 @@
 const Button = ({ children, className, onClick }) => {
+  const handleClick = () => setTimeout(onClick, 250)
+
   return (
-    <button className={`group relative ${className}`} onClick={onClick}>
+    <button className={`group relative ${className}`} onClick={handleClick}>
       <div className='w-full p-5 bg-white text-primary text-3xl group-active:translate-x-1 group-active:translate-y-1 duration-300'>
         {children}
       </div>

@@ -9,7 +9,7 @@ const Rules = () => {
     <div className='flex flex-col gap-y-8 magestic-screen py-6 md:px-9'>
       <div className='relative flex justify-center items-center w-full'>
         <button className='group absolute left-0' onClick={() => setScreen('home')}>
-          <IoClose className='text-white text-5xl duration-200 group-hover:rotate-90' />
+          <IoClose className='text-white text-5xl duration-200 group-hover:rotate-90 group-active:scale-75' />
         </button>
 
         <h2 className='text-white text-6xl md:text-6xl text-center font-title leading-tight'>
