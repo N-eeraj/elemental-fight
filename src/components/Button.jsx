@@ -1,5 +1,7 @@
+import { clickDelay } from '@utils/ui'
+
 const Button = ({ children, className, onClick }) => {
-  const handleClick = () => setTimeout(onClick, 250)
+  const handleClick = clickDelay(onClick)
 
   return (
     <button className={`group relative ${className}`} onClick={handleClick}>
