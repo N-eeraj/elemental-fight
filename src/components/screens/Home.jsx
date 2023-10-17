@@ -1,5 +1,4 @@
 import { useContext } from 'react'
-
 import Button from '@components/Button'
 import Stars from '@components/Stars'
 import { ScreenContext } from '@/App'

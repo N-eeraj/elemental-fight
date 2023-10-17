@@ -1,18 +1,15 @@
 import { useContext } from 'react'
-import { IoClose } from 'react-icons/io5'
+import Close from '@components/Close'
 import { ScreenContext } from '@/App'
-import { clickDelay } from '@utils/ui'
 
 const Rules = () => {
   const { setScreen } = useContext(ScreenContext)
-  const handleClose = clickDelay(() => setScreen('home'))
+  const navigateToHome = () => setScreen('home')
 
   return (
     <div className='flex flex-col gap-y-8 magestic-screen py-6 md:px-9'>
       <div className='relative flex justify-center items-center w-full'>
-        <button className='group absolute left-0' onClick={handleClose}>
-          <IoClose className='text-white text-5xl duration-300 group-hover:rotate-90 group-active:scale-75' />
-        </button>
+        <Close onClick={navigateToHome} />
 
         <h2 className='text-white text-6xl md:text-6xl text-center font-title leading-tight'>
           Rules
