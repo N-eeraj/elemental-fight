@@ -15,6 +15,10 @@ export default {
           rock: '#C0BC8C',
           fire: '#FF662E',
           lightning: '#FFDF00',
+        },
+        point: {
+          pending: '#CCC',
+          scored: '#0C7',
         }
       },
       fontFamily: {

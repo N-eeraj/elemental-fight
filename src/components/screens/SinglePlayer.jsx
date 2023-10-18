@@ -1,8 +1,8 @@
-import Game from '@components/Game'
+import Game from '@game'
 
 const SinglePlayer = () => {
   return (
-    <Game opponent='CPU' />
+    <Game singlePlayer />
   )
 }
 
