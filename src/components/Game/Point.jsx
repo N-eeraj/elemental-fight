@@ -9,7 +9,7 @@ const Point = ({ opponent }) => {
   return (
     <div className='flex flex-col gap-y-2 w-32'>
       <span className='w-full text-center text-3xl font-title'>
-        {opponent ? opponentName : 'Player'}
+        {opponent ? opponentName : 'You'}
       </span>
       <div className='flex justify-between'>
         {Array.from({ length: 3 }).map((_, i) => (
