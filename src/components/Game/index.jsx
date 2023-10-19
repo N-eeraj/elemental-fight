@@ -1,5 +1,6 @@
 import {
   useState,
+  useEffect,
   createContext,
   useContext,
 } from 'react'
@@ -38,11 +39,30 @@ const Play = ({ singlePlayer }) => {
     setOpponentElement,
   }
 
+  const calculateResult = () => {
+    console.log({ playerElement, opponentElement })
+    setTimeout(() => {
+      setPlayerElement(null)
+      setOpponentElement(null)
+    }, 2500)
+  }
+
+  useEffect(() => {
+    if (!(playerElement && singlePlayer)) return
+    const elements = [ 'water', 'fire', 'grass', 'rock', 'lightning' ]
+    setOpponentElement(elements[Math.floor(Math.random() * elements.length)])
+  }, [playerElement])
+
+  useEffect(() => {
+    if (playerElement && opponentElement)
+      calculateResult()
+  }, [playerElement, opponentElement])
+
   return (
     <div className='flex flex-col items-center h-full px-6 py-12'>
       <Close dark onClick={navigateToHome} />
       <GameContext.Provider value={contextOptions}>
-        <div className='flex justify-between w-full max-w-md'>
+        <div className='flex justify-between w-full max-w-lg'>
           <Point />
           <Point opponent />
         </div>

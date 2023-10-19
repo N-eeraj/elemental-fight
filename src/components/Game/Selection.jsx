@@ -21,8 +21,8 @@ const Element = () => {
   return (
     <div className='flex flex-wrap justify-center items-center w-full max-w-md'>
       {Object.entries(elements).map(([element, image]) => (
-        <button className='w-1/3' onClick={() => setPlayerElement(element)}>
-          <img src={image} alt={element} className='w-full' />
+        <button className='group w-1/3' key={element} onClick={() => setPlayerElement(element)}>
+          <img src={image} alt={element} className='w-full group-hover:scale-125 duration-300' />
         </button>
       ))}
     </div>
