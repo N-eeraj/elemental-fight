@@ -26,6 +26,7 @@ const Play = ({ singlePlayer }) => {
   const [opponentElement, setOpponentElement] = useState(null)
 
   const reveal = playerElement && opponentElement
+  const gameOver = Object.values(score).some(value => value === 3)
 
   const navigateToHome = () => setScreen('home')
 
@@ -40,7 +41,34 @@ const Play = ({ singlePlayer }) => {
   }
 
   const calculateResult = () => {
-    console.log({ playerElement, opponentElement })
+    if (playerElement !== opponentElement) {
+      const check = winElements => {
+        setScore(previousValue => {
+          const newValue = previousValue
+          ++newValue[winElements.includes(opponentElement) ? 'player' : 'opponent']
+          return newValue
+        })
+      }
+
+      switch (playerElement) {
+        case 'water':
+          check(['fire', 'rock'])
+          break
+        case 'fire':
+          check(['grass', 'lightning'])
+          break
+        case 'grass':
+          check(['water', 'rock'])
+          break
+        case 'rock':
+          check(['fire', 'lightning'])
+          break
+        case 'lightning':
+          check(['water', 'grass'])
+          break
+      }
+    }
+
     setTimeout(() => {
       setPlayerElement(null)
       setOpponentElement(null)
@@ -67,10 +95,14 @@ const Play = ({ singlePlayer }) => {
           <Point opponent />
         </div>
 
-        <div className="flex flex-col md:flex-row justify-around items-center w-full h-full">
-          <Element opponent />
-          {playerElement ? <Element /> : <Selection />}
-        </div>
+        {
+          gameOver ?
+          <span>Game Over</span> :
+          <div className="flex flex-col md:flex-row-reverse justify-around items-center w-full h-full">
+            <Element opponent />
+            {playerElement ? <Element /> : <Selection />}
+          </div>
+        }
       </GameContext.Provider>
     </div>
   )
