@@ -9,6 +9,7 @@ import Element from '@game/Element'
 import Selection from '@game/Selection'
 import Close from '@components/Close'
 import { ScreenContext } from '@/App'
+import elements from '@utils/elements'
 
 export const GameContext = createContext()
 
@@ -38,6 +39,11 @@ const Play = ({ singlePlayer }) => {
     reveal,
     setPlayerElement,
     setOpponentElement,
+  }
+
+  const cpuSelection = () => {
+    const options = Object.keys(elements)
+    setTimeout(() => setOpponentElement(options[Math.floor(Math.random() * options.length)]), 800)
   }
 
   const calculateResult = () => {
@@ -72,19 +78,22 @@ const Play = ({ singlePlayer }) => {
     setTimeout(() => {
       setPlayerElement(null)
       setOpponentElement(null)
+      cpuSelection()
     }, 2500)
   }
 
   useEffect(() => {
     if (!(playerElement && singlePlayer)) return
-    const elements = [ 'water', 'fire', 'grass', 'rock', 'lightning' ]
-    setOpponentElement(elements[Math.floor(Math.random() * elements.length)])
   }, [playerElement])
 
   useEffect(() => {
     if (playerElement && opponentElement)
       calculateResult()
   }, [playerElement, opponentElement])
+
+  useEffect(() => {
+    cpuSelection()
+  }, [])
 
   return (
     <div className='flex flex-col items-center h-full px-6 py-12'>
@@ -98,7 +107,7 @@ const Play = ({ singlePlayer }) => {
         {
           gameOver ?
           <span>Game Over</span> :
-          <div className="flex flex-col md:flex-row-reverse justify-around items-center w-full h-full">
+          <div className='flex flex-col md:flex-row-reverse justify-around items-center w-full h-full'>
             <Element opponent />
             {playerElement ? <Element /> : <Selection />}
           </div>

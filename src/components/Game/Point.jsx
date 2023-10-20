@@ -3,13 +3,13 @@ import { HiStar } from 'react-icons/hi'
 import { GameContext } from '@game'
 
 const Point = ({ opponent }) => {
-  const { score, opponent: opponentName } = useContext(GameContext)
-  const points = score[opponent ? 'opponent' : 'player']
+  const gameContext = useContext(GameContext)
+  const points = gameContext?.score[opponent ? 'opponent' : 'player']
 
   return (
     <div className='flex flex-col gap-y-2 w-32'>
       <span className='w-full text-center text-3xl font-title'>
-        {opponent ? opponentName : 'You'}
+        {opponent ? gameContext?.opponent : 'You'}
       </span>
       <div className='flex justify-between'>
         {Array.from({ length: 3 }).map((_, i) => (
