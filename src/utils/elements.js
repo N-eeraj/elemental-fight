@@ -1,8 +1,8 @@
-import water from '@elements/water.svg'
-import fire from '@elements/fire.svg'
-import grass from '@elements/grass.svg'
-import rock from '@elements/rock.svg'
-import lightning from '@elements/lightning.svg'
+import water from '@assets/elements/water.svg'
+import fire from '@assets/elements/fire.svg'
+import grass from '@assets/elements/grass.svg'
+import rock from '@assets/elements/rock.svg'
+import lightning from '@assets/elements/lightning.svg'
 
 const elements = {
   water,

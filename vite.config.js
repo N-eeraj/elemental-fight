@@ -4,6 +4,7 @@ import * as path from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: process.env.NODE_ENV === 'production' ? '/elemental-fight/' : '/',
   plugins: [react()],
   resolve: {
     alias: {
@@ -13,6 +14,7 @@ export default defineConfig({
       '@game' : path.resolve(__dirname, './src/components/game'),
       '@styles' : path.resolve(__dirname, './src/styles'),
       '@utils' : path.resolve(__dirname, './src/utils'),
+      '@assets' : path.resolve(__dirname, './src/assets/'),
     }
   }
 })

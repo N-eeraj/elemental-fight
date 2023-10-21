@@ -1,6 +1,7 @@
 import { useContext } from 'react'
 import Close from '@components/Close'
 import { ScreenContext } from '@/App'
+import rules from '@assets/rules.svg'
 
 const Rules = () => {
   const { setScreen } = useContext(ScreenContext)
@@ -37,7 +38,7 @@ const Rules = () => {
           </li>
         </ul>
 
-        <img src='/rules.svg' className='w-full max-w-md' />
+        <img src={rules} className='w-full max-w-md' />
       </div>
     </div>
   )
