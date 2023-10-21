@@ -1,7 +1,8 @@
 import { useContext } from 'react'
 import Close from '@components/Close'
 import { ScreenContext } from '@/App'
-import rules from '@assets/rules.svg'
+import rules from '@assets/rules.json'
+import elementRules from '@assets/rules.svg'
 
 const Rules = () => {
   const { setScreen } = useContext(ScreenContext)
@@ -19,26 +20,10 @@ const Rules = () => {
 
       <div className='flex flex-col items-center gap-y-5 h-full overflow-y-auto px-10 text-white'>
         <ul className='flex flex-col gap-y-5 w-full list-disc text-xl md:text-2xl font-body'>
-          <li>
-            Elemental Fight is a game similar to rock paper scissors.
-          </li>
-          <li>
-            You need to choose among 5 elements; Fire, Grass, Water, Lightning & Rock.
-            <br />
-            Your opponent will also choose one.
-          </li>
-          <li>
-            Each element is capable of defeating 2 elements & will be defeated by the other 2.
-          </li>
-          <li>
-            Your score one point on beating the opponent's element of each round.
-          </li>
-          <li>
-            First to score 3 points win.
-          </li>
+          {rules.map((rule, index) => <li key={index}>{rule}</li>)}
         </ul>
 
-        <img src={rules} className='w-full max-w-md' />
+        <img src={elementRules} className='w-full max-w-md' />
       </div>
     </div>
   )
