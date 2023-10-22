@@ -7,6 +7,7 @@ import {
 import Point from '@game/Point'
 import Element from '@game/Element'
 import Selection from '@game/Selection'
+import GameOver from '@game/Over'
 import Close from '@components/Close'
 import { ScreenContext } from '@/App'
 import elements from '@utils/elements'
@@ -27,7 +28,7 @@ const Play = ({ singlePlayer }) => {
   const [opponentElement, setOpponentElement] = useState(null)
 
   const reveal = playerElement && opponentElement
-  const gameOver = Object.values(score).some(value => value === 3)
+  const isGameOver = Object.values(score).some(value => value === 3)
 
   const navigateToHome = () => setScreen('home')
 
@@ -96,24 +97,24 @@ const Play = ({ singlePlayer }) => {
   }, [])
 
   return (
-    <div className='flex flex-col items-center h-full px-6 py-12'>
-      <Close dark onClick={navigateToHome} />
-      <GameContext.Provider value={contextOptions}>
-        <div className='flex justify-between w-full max-w-lg'>
-          <Point />
-          <Point opponent />
-        </div>
+    <GameContext.Provider value={contextOptions}>
+      {
+        isGameOver ? <GameOver /> :
 
-        {
-          gameOver ?
-          <span>Game Over</span> :
+        <div className='flex flex-col items-center h-full px-6 py-12'>
+          <Close dark onClick={navigateToHome} />
+          <div className='flex justify-between w-full max-w-lg'>
+            <Point />
+            <Point opponent />
+          </div>
+  
           <div className='flex flex-col md:flex-row-reverse justify-around items-center w-full h-full'>
             <Element opponent />
             {playerElement ? <Element /> : <Selection />}
           </div>
-        }
-      </GameContext.Provider>
-    </div>
+        </div>
+      }
+    </GameContext.Provider>
   )
 }
 
