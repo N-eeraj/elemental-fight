@@ -83,6 +83,8 @@ const Play = ({ singlePlayer }) => {
     }, 2500)
   }
 
+  const handleRestart = () => console.log('restart')
+
   useEffect(() => {
     if (!(playerElement && singlePlayer)) return
   }, [playerElement])
@@ -99,7 +101,7 @@ const Play = ({ singlePlayer }) => {
   return (
     <GameContext.Provider value={contextOptions}>
       {
-        isGameOver ? <GameOver /> :
+        isGameOver ? <GameOver restart={handleRestart} /> :
 
         <div className='flex flex-col items-center h-full px-6 py-12'>
           <Close dark onClick={navigateToHome} />

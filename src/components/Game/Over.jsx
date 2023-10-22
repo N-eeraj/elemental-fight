@@ -4,31 +4,31 @@ import { GameContext } from '@game'
 import { ScreenContext } from '@/App'
 
 
-const Over = () => {
+const Over = ({ restart }) => {
   const { score } = useContext(GameContext)
   const { setScreen } = useContext(ScreenContext)
   const result = score.player < score.opponent ? 'Lose' : 'Win'
 
   return (
-    <div className='magestic-screen text-white'>
-      <div>
-        <h2>
+    <div className='flex flex-col justify-center items-center gap-y-16 magestic-screen text-white font-title'>
+      <div className='flex flex-col items-center gap-y-5'>
+        <h2 className='text-7xl'>
           Game Over
         </h2>
-        <strong>
+        <strong className='text-6xl'>
           You {result}!
         </strong>
       </div>
 
-      <div>
-        <h3>
+      <div className='flex flex-col items-center gap-y-6'>
+        <h3 className='text-6xl'>
           Play Again ?
         </h3>
-        <div>
-          <Button className='font-title'>
+        <div className='flex gap-x-6 w-full'>
+          <Button className='w-1/2' onClick={restart}>
             Yes
           </Button>
-          <Button className='font-title'>
+          <Button className='w-1/2' onClick={() => setScreen('home')}>
             No
           </Button>
         </div>
