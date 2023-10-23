@@ -1,4 +1,5 @@
 import { useContext } from 'react'
+import Selection from '@game/Selection'
 import { GameContext } from '@game'
 import elements from '@utils/elements'
 
@@ -7,8 +8,11 @@ const Element = ({ opponent }) => {
   const element = gameContext[opponent ? 'opponentElement' : 'playerElement']
 
   const template = (() => {
-    if (element === null)
-      return <div className='w-3/4 h-3/4 border-8 rounded-full border-primary border-t-[#CCC] animate-spin' />
+    if (element === null) {
+      if (opponent)
+        return <div className='w-3/4 h-3/4 border-8 rounded-full border-primary border-t-[#CCC] animate-spin' />
+      return <Selection />
+    }
     else if (!gameContext?.reveal && opponent)
       return <div className='flex justify-center items-center w-3/4 h-3/4 bg-white text-primary rounded-full border-8 border-primary font-title text-9xl'>?</div>
     else
@@ -16,7 +20,7 @@ const Element = ({ opponent }) => {
     })()
 
   return (
-    <div className='grid place-items-center gridx w-48 aspect-square'>
+    <div className={`grid place-items-center ${(element !== null || opponent) && 'w-48 aspect-square'}`}>
       {template}
     </div>
   )

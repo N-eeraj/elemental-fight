@@ -6,7 +6,6 @@ import {
 } from 'react'
 import Point from '@game/Point'
 import Element from '@game/Element'
-import Selection from '@game/Selection'
 import GameOver from '@game/Over'
 import Close from '@components/Close'
 import { ScreenContext } from '@/App'
@@ -83,7 +82,14 @@ const Play = ({ singlePlayer }) => {
     }, 2500)
   }
 
-  const handleRestart = () => console.log('restart')
+  const handleRestart = () => {
+    if (singlePlayer) {
+      setScore({
+        player: 0,
+        opponent: 0,
+      })
+    }
+  }
 
   useEffect(() => {
     if (!(playerElement && singlePlayer)) return
@@ -112,7 +118,7 @@ const Play = ({ singlePlayer }) => {
   
           <div className='flex flex-col md:flex-row-reverse justify-around items-center w-full h-full'>
             <Element opponent />
-            {playerElement ? <Element /> : <Selection />}
+            <Element />
           </div>
         </div>
       }
