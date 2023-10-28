@@ -22,7 +22,7 @@ const Home = () => {
         </h1>
 
         <div className='flex flex-col gap-y-6 w-full max-w-xs'>
-          {menuOptions.map(({text, value}, index) => <Button className='font-title' key={index} onClick={() => setScreen(value)}> {text} </Button>)}
+          {menuOptions.map(({text, value}, index) => <Button key={index} onClick={() => setScreen(value)}> {text} </Button>)}
         </div>
       </div>
     </>

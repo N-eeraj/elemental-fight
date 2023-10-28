@@ -5,6 +5,10 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  @apply font-body;
+}
+
 .magestic-screen {
   @apply w-full h-full bg-gradient-to-b from-accent to-primary;
 }

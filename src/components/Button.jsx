@@ -4,7 +4,7 @@ const Button = ({ children, className, onClick }) => {
   const handleClick = clickDelay(onClick)
 
   return (
-    <button className={`group relative ${className}`} onClick={handleClick}>
+    <button className={`group relative font-title ${className}`} onClick={handleClick}>
       <div className='w-full p-5 bg-white text-primary text-3xl group-active:translate-x-1 group-active:translate-y-1 duration-300'>
         {children}
       </div>

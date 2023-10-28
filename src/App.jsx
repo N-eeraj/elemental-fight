@@ -32,7 +32,7 @@ const App = () => {
   useEffect(() => {
     window.onbeforeunload = () => true
     const query = new URLSearchParams(window.location.search)
-    if (query.get('match')) setScreen('multiPlayer')
+    if (query.get('matchId')) setScreen('multiPlayer')
   }, [])
 
   return (

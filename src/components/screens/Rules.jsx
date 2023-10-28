@@ -19,7 +19,7 @@ const Rules = () => {
       </div>
 
       <div className='flex flex-col items-center gap-y-5 h-full overflow-y-auto px-10 text-white'>
-        <ul className='flex flex-col gap-y-5 w-full list-disc text-xl md:text-2xl font-body'>
+        <ul className='flex flex-col gap-y-5 w-full list-disc text-xl md:text-2xl'>
           {rules.map((rule, index) => <li key={index}>{rule}</li>)}
         </ul>
 
