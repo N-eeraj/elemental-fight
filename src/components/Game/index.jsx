@@ -13,13 +13,13 @@ import elements from '@utils/elements'
 
 export const GameContext = createContext()
 
-const Play = ({ singlePlayer }) => {
+const Play = ({ multiPlayer }) => {
   const [score, setScore] = useState({
     player: 0,
     opponent: 0,
   })
 
-  const opponent = singlePlayer ? 'CPU' : 'Opponent'
+  const opponent = multiPlayer ? 'Opponent' : 'CPU'
 
   const { setScreen } = useContext(ScreenContext)
 
@@ -83,7 +83,7 @@ const Play = ({ singlePlayer }) => {
   }
 
   const handleRestart = () => {
-    if (singlePlayer) {
+    if (!multiPlayer) {
       setScore({
         player: 0,
         opponent: 0,
@@ -92,16 +92,13 @@ const Play = ({ singlePlayer }) => {
   }
 
   useEffect(() => {
-    if (!(playerElement && singlePlayer)) return
-  }, [playerElement])
-
-  useEffect(() => {
     if (playerElement && opponentElement)
       calculateResult()
   }, [playerElement, opponentElement])
 
   useEffect(() => {
-    cpuSelection()
+    if (!multiPlayer)
+      cpuSelection()
   }, [])
 
   return (
