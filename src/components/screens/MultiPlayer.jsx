@@ -25,10 +25,9 @@ const MultiPlayer = () => {
     peer.current.on('open', id => {
       setHostId(id)
       if (isHost) {
-        console.log(`Join to ${id}`)
       }
       else {
-        console.log(`Join with ${id}`)
+        console.log(`Connect to ${id}`)
       }
       })
   }, [isHost])

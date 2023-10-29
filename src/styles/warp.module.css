@@ -1,0 +1,31 @@
+.star {
+  top: -100vh;
+  width: 0.5px;
+  animation: trail-animation linear infinite 2s;
+}
+
+.star::after {
+  width: 3px;
+  animation: star-animation linear infinite 2s;
+}
+
+
+@keyframes trail-animation {
+  from {
+    filter: grayscale(1);
+    top: -100vh;
+  }
+  to {
+    filter: grayscale(0) contrast(10);
+    top: 100vh;
+  }
+}
+
+@keyframes star-animation {
+  from {
+    background-color: white;
+  }
+  to {
+    background-color: #5CF;
+  }
+}
