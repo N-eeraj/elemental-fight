@@ -9,7 +9,27 @@ const Invitation = ({ hostId }) => {
   const { setScreen } = useContext(ScreenContext)
   const navigateToHome = () => setScreen('home')
 
-  const url = `${location.href}?matchId=${hostId}`
+  const shareLink = async () => {
+    if (navigator.share) {
+        const shareData = {
+            title: 'Elemental Fight',
+            text: 'Join the fight',
+            url
+        }
+        await navigator.share(shareData)
+    }
+    else {
+        const dummy = document.createElement('textarea')
+        document.body.appendChild(dummy)
+        dummy.value = url
+        dummy.select()
+        document.execCommand('copy')
+        document.body.removeChild(dummy)
+        alert('Copied Invitation Link')
+    }
+  }
+
+  const url = `${location.origin}?matchId=${hostId}`
 
   return (
     <div className='flex flex-col md:flex-row justify-center items-center gap-y-10 md:gap-x-12 magestic-screen px-10 py-6 text-white'>
@@ -38,7 +58,7 @@ const Invitation = ({ hostId }) => {
               <span className='text-xl'>
                 Share invitation link
               </span>
-              <Button className='w-full'>
+              <Button className='w-full' onClick={shareLink}>
                 Invite
               </Button>
             </div>
