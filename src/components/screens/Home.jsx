@@ -1,10 +1,10 @@
 import { useContext } from 'react'
 import Button from '@components/Button'
 import Sparkle from '@animations/Sparkle'
-import { ScreenContext } from '@/App'
+import { MainContext } from '@/App'
 
 const Home = () => {
-  const { setScreen } = useContext(ScreenContext)
+  const { setScreen } = useContext(MainContext)
 
   const menuOptions = [
     { text: 'Single Player', value: 'singlePlayer', },

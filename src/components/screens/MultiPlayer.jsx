@@ -1,18 +1,22 @@
 import {
   useEffect,
   useState,
-  useRef
+  useRef,
+  useContext
 } from 'react'
 import { Peer } from 'peerjs'
 import Game from '@game'
 import Invitation from '@screens/Invitation'
 import Connecting from '@screens/Connecting'
+import { MainContext } from '@/App'
 
 const MultiPlayer = () => {
   const peer = useRef(null)
   const [hostId, setHostId] = useState(null)
   const [isHost, setIsHost] = useState(null)
   const [isConnected, setIsConnected] = useState(false)
+
+  const { setScreen, $toast } = useContext(MainContext)
 
   useEffect(() => {
     const query = new URLSearchParams(window.location.search)
@@ -29,7 +33,13 @@ const MultiPlayer = () => {
       else {
         console.log(`Connect to ${id}`)
       }
+    })
+    peer.current.on('error', () => {
+      $toast('Oops! Something went wrong.', {
+        type: 'error',
+        onClose: () => setScreen('home'),
       })
+    })
   }, [isHost])
 
 

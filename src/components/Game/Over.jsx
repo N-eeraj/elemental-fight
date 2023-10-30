@@ -1,12 +1,12 @@
 import { useContext } from 'react'
 import Button from '@components/Button'
 import { GameContext } from '@game'
-import { ScreenContext } from '@/App'
+import { MainContext } from '@/App'
 
 
 const Over = ({ restart }) => {
   const { score } = useContext(GameContext)
-  const { setScreen } = useContext(ScreenContext)
+  const { setScreen } = useContext(MainContext)
   const result = score.player < score.opponent ? 'Lose' : 'Win'
 
   return (

@@ -3,16 +3,23 @@ import {
   useEffect,
   createContext,
 } from 'react'
-
+import { ToastContainer, toast } from 'react-toastify'
 import Home from '@screens/Home'
 import SinglePlayer from '@screens/SinglePlayer'
 import MultiPlayer from '@screens/MultiPlayer'
 import Rules from '@screens/Rules'
+import 'react-toastify/dist/ReactToastify.css'
 
-export const ScreenContext = createContext()
+export const MainContext = createContext()
 
 const App = () => {
   const [screen, setScreen] = useState('home')
+  const $toast = (text, { type, theme, autoClose, onClose } = {}) => toast(text, {
+    type: type ?? 'default',
+    theme: theme ?? 'colored',
+    autoClose: autoClose ?? 3000,
+    onClose: onClose ?? null,
+  })
 
   const currentScreen = (() => {
     switch(screen) {
@@ -37,9 +44,10 @@ const App = () => {
 
   return (
     <div className='w-screen h-screen'>
-      <ScreenContext.Provider value={{ setScreen }}>
+      <MainContext.Provider value={{ setScreen, $toast }}>
         {currentScreen}
-      </ScreenContext.Provider>
+      </MainContext.Provider>
+      <ToastContainer />
     </div>
   )
 }

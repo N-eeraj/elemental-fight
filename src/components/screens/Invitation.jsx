@@ -3,10 +3,10 @@ import QRCode from 'react-qr-code'
 import Button from '@components/Button'
 import Close from '@components/Close'
 import MeteorStream from '@animations/MeteorStream'
-import { ScreenContext } from '@/App'
+import { MainContext } from '@/App'
 
 const Invitation = ({ hostId }) => {
-  const { setScreen } = useContext(ScreenContext)
+  const { setScreen } = useContext(MainContext)
   const navigateToHome = () => setScreen('home')
 
   const shareLink = async () => {

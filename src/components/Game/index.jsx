@@ -8,7 +8,7 @@ import Point from '@game/Point'
 import Element from '@game/Element'
 import GameOver from '@game/Over'
 import Close from '@components/Close'
-import { ScreenContext } from '@/App'
+import { MainContext } from '@/App'
 import elements from '@utils/elements'
 
 export const GameContext = createContext()
@@ -21,7 +21,7 @@ const Play = ({ multiPlayer }) => {
 
   const opponent = multiPlayer ? 'Opponent' : 'CPU'
 
-  const { setScreen } = useContext(ScreenContext)
+  const { setScreen } = useContext(MainContext)
 
   const [playerElement, setPlayerElement] = useState(null)
   const [opponentElement, setOpponentElement] = useState(null)

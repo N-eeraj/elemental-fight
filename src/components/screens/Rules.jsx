@@ -1,11 +1,11 @@
 import { useContext } from 'react'
 import Close from '@components/Close'
-import { ScreenContext } from '@/App'
+import { MainContext } from '@/App'
 import rules from '@assets/rules.json'
 import elementRules from '@assets/rules.svg'
 
 const Rules = () => {
-  const { setScreen } = useContext(ScreenContext)
+  const { setScreen } = useContext(MainContext)
   const navigateToHome = () => setScreen('home')
 
   return (
