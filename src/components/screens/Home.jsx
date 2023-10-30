@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import Button from '@components/Button'
-import Stars from '@components/Stars'
+import Sparkle from '@animations/Sparkle'
 import { ScreenContext } from '@/App'
 
 const Home = () => {
@@ -14,7 +14,7 @@ const Home = () => {
 
   return (
     <>
-      <Stars />
+      <Sparkle />
 
       <div className='flex flex-col justify-center items-center gap-y-20 md:gap-y-12 magestic-screen px-10'>
         <h1 className='text-white text-6xl md:text-7xl text-center font-title leading-tight'>

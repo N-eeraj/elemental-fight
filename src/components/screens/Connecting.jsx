@@ -1,9 +1,9 @@
-import Warp from '@components/Warp'
+import MeteorStream from '@animations/MeteorStream'
 
 const Connecting = () => {
   return (
     <div className='flex justify-end items-end magestic-screen p-5'>
-      <Warp />
+      <MeteorStream />
       <span className='text-white text-xl animate-pulse'>
         Connecting
       </span>

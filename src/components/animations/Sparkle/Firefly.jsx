@@ -3,9 +3,9 @@ import {
   useEffect
 } from 'react'
 
-import styles from '@styles/stars.module.css'
+import styles from '@styles/firefly.module.css'
 
-const Star = () => {
+const Firefly = () => {
   const starRef = useRef(null)
   const position = useRef({ x: 0, y: 0 })
   const interval = useRef(null)
@@ -33,8 +33,8 @@ const Star = () => {
   }, [])
 
   return (
-    <div ref={starRef} className={`fixed bg-white rounded-full ${styles.star}`} />
+    <div ref={starRef} className={`fixed bg-element-lightning rounded-full ${styles.firefly}`} />
   )
 }
 
-export default Star
+export default Firefly

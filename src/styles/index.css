@@ -6,7 +6,7 @@
 @tailwind utilities;
 
 html {
-  @apply font-body;
+  @apply font-body cursor-grab active:cursor-grabbing;
 }
 
 .magestic-screen {

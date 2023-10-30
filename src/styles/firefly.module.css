@@ -4,9 +4,8 @@
   --shadow-3: 0 0 30px 3px;
   --shadow-4: 0 0 40px 4px;
 
-  --cool: #0AF;
-  --light: #FFF;
-  --warm: #FFA;
+  --light: #EF9;
+  --warm: #FF5;
 
   --warm-shadow:
     var(--shadow-1) var(--warm),
@@ -19,15 +18,9 @@
     var(--shadow-2) var(--light),
     var(--shadow-3) var(--light),
     var(--shadow-4) var(--light);
-
-  --cool-shadow:
-    var(--shadow-1) var(--cool),
-    var(--shadow-2) var(--cool),
-    var(--shadow-3) var(--cool),
-    var(--shadow-4) var(--cool);
 }
 
-.star {
+.firefly {
   width: 3px;
   height: 3px;
   box-shadow: var(--light-shadow);
@@ -42,7 +35,7 @@
   }
 
   25% {
-    box-shadow: var(--cool-shadow);
+    box-shadow: var(--warm-shadow);
     opacity: 0;
     transform: scale(1.2);
   }
