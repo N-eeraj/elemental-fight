@@ -6,7 +6,7 @@ import MeteorStream from '@animations/MeteorStream'
 import { MainContext } from '@/App'
 
 const Invitation = ({ hostId }) => {
-  const { setScreen } = useContext(MainContext)
+  const { setScreen, $toast } = useContext(MainContext)
   const navigateToHome = () => setScreen('home')
 
   const shareLink = async () => {
@@ -25,7 +25,7 @@ const Invitation = ({ hostId }) => {
         dummy.select()
         document.execCommand('copy')
         document.body.removeChild(dummy)
-        alert('Copied Invitation Link')
+        $toast('Copied Invitation Link', { type: 'success' })
     }
   }
 
