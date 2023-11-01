@@ -13,7 +13,7 @@ import elements from '@utils/elements'
 
 export const GameContext = createContext()
 
-const Play = ({ multiPlayer }) => {
+const Play = ({ multiPlayer, onSelect }) => {
   const [score, setScore] = useState({
     player: 0,
     opponent: 0,
@@ -39,6 +39,7 @@ const Play = ({ multiPlayer }) => {
     reveal,
     setPlayerElement,
     setOpponentElement,
+    onSelect,
   }
 
   const cpuSelection = () => {

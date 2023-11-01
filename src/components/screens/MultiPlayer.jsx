@@ -23,15 +23,30 @@ const MultiPlayer = () => {
   const handleMessage = () => connection.current.on('data', data => {
     const { type, message } = JSON.parse(data)
     switch (type) {
-      case 'connection':
-        if (isConnected) return
+      case 'CONNECTION':
+        if (Object.keys(peer.current.connections).length > 1) {
+          return sendMessage({
+            type: 'DUPLICATE',
+            message: 'Host already in a different match',
+          })
+        }
         if (message === 'guest') {
           sendMessage({
-            type: 'connection',
+            type: 'CONNECTION',
             message: 'host',
           })
         }
         setIsConnected(true)
+        break
+      case 'SELECTION':
+        console.log(message)
+        break
+      case 'DUPLICATE':
+        $toast(message, {
+          type: 'error',
+          theme: 'light',
+          onClose: () => setScreen('home'),
+        })
         break
       default:
         console.error(`Invalid data type ${type}`)
@@ -64,26 +79,30 @@ const MultiPlayer = () => {
           handleMessage()
           if (isConnected) return
           sendMessage({
-            type: 'connection',
+            type: 'CONNECTION',
             message: 'guest',
           })
         })
       }
     })
-    peer.current.on('error', (error) => {
-      console.log(error)
-      $toast('Oops! Couldn\'t generate invitation.\nCheck your connection and please try again.', {
+    peer.current.on('error', () => {
+      $toast('Oops! Something went wrong. Please check your connection and please try again.', {
         type: 'error',
         onClose: () => setScreen('home'),
       })
     })
   }, [isHost])
 
+  const handleSelect = element => sendMessage({
+    type: 'SELECTION',
+    message: element,
+  })
+
   return (
     <>
       {
         isConnected ?
-          <Game multiPlayer /> :
+          <Game multiPlayer onSelect={handleSelect} /> :
           (
             isHost ?
               <Invitation hostId={hostId} /> :

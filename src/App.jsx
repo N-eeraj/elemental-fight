@@ -47,7 +47,7 @@ const App = () => {
       <MainContext.Provider value={{ setScreen, $toast }}>
         {currentScreen}
       </MainContext.Provider>
-      <ToastContainer />
+      <ToastContainer limit={1} />
     </div>
   )
 }
