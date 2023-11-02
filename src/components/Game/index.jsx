@@ -13,7 +13,7 @@ import elements from '@utils/elements'
 
 export const GameContext = createContext()
 
-const Play = ({ multiPlayer, onSelect }) => {
+const Play = ({ multiPlayer, opponentSelectedElement, onSelect, onClear }) => {
   const [score, setScore] = useState({
     player: 0,
     opponent: 0,
@@ -79,7 +79,10 @@ const Play = ({ multiPlayer, onSelect }) => {
     setTimeout(() => {
       setPlayerElement(null)
       setOpponentElement(null)
-      cpuSelection()
+      if (onClear)
+        onClear()
+      if (!multiPlayer)
+        cpuSelection()
     }, 2500)
   }
 
@@ -96,6 +99,11 @@ const Play = ({ multiPlayer, onSelect }) => {
     if (playerElement && opponentElement)
       calculateResult()
   }, [playerElement, opponentElement])
+
+  useEffect(() => {
+    if (!opponentSelectedElement) return
+    setOpponentElement(opponentSelectedElement)
+  }, [opponentSelectedElement])
 
   useEffect(() => {
     if (!multiPlayer)

@@ -16,6 +16,7 @@ const MultiPlayer = () => {
   const [hostId, setHostId] = useState(null)
   const [isHost, setIsHost] = useState(null)
   const [isConnected, setIsConnected] = useState(false)
+  const [opponentElement, setOpponentElement] = useState(null)
 
   const { setScreen, $toast } = useContext(MainContext)
 
@@ -39,7 +40,7 @@ const MultiPlayer = () => {
         setIsConnected(true)
         break
       case 'SELECTION':
-        console.log(message)
+        setOpponentElement(message)
         break
       case 'DUPLICATE':
         $toast(message, {
@@ -86,7 +87,7 @@ const MultiPlayer = () => {
       }
     })
     peer.current.on('error', () => {
-      $toast('Oops! Something went wrong. Please check your connection and please try again.', {
+      $toast('Oops! Something went wrong. Please try again later.', {
         type: 'error',
         onClose: () => setScreen('home'),
       })
@@ -102,7 +103,7 @@ const MultiPlayer = () => {
     <>
       {
         isConnected ?
-          <Game multiPlayer onSelect={handleSelect} /> :
+          <Game multiPlayer opponentSelectedElement={opponentElement} onSelect={handleSelect} onClear={setOpponentElement} /> :
           (
             isHost ?
               <Invitation hostId={hostId} /> :
