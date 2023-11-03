@@ -13,7 +13,7 @@ import elements from '@utils/elements'
 
 export const GameContext = createContext()
 
-const Play = ({ multiPlayer, opponentSelectedElement, onSelect, onClear }) => {
+const Play = ({ multiPlayer, opponentSelectedElement, onSelect, onClear, onExit }) => {
   const [score, setScore] = useState({
     player: 0,
     opponent: 0,
@@ -29,7 +29,10 @@ const Play = ({ multiPlayer, opponentSelectedElement, onSelect, onClear }) => {
   const reveal = playerElement && opponentElement
   const isGameOver = Object.values(score).some(value => value === 3)
 
-  const navigateToHome = () => setScreen('home')
+  const navigateToHome = () => {
+    onExit()
+    setScreen('home')
+  }
 
   const contextOptions = {
     score,

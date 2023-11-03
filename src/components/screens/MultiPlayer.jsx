@@ -49,6 +49,13 @@ const MultiPlayer = () => {
           onClose: () => setScreen('home'),
         })
         break
+      case 'DISCONNECTION':
+        if (Object.keys(peer.current.connections).includes(message))
+          $toast('Your opponent left the match', {
+            type: 'error',
+            onClose: () => setScreen('home'),
+          })
+        break
       default:
         console.error(`Invalid data type ${type}`)
     }
@@ -66,10 +73,10 @@ const MultiPlayer = () => {
   useEffect(() => {
     if (isHost === null) return
     peer.current = new Peer()
-    peer.current.on('open', id => {
+    peer.current?.on('open', id => {
       setHostId(id)
       if (isHost) {
-        peer.current.on('connection', conn => {
+        peer.current?.on('connection', conn => {
           connection.current = conn
           handleMessage()
         })
@@ -86,24 +93,28 @@ const MultiPlayer = () => {
         })
       }
     })
-    peer.current.on('error', () => {
-      $toast('Oops! Something went wrong. Please try again later.', {
-        type: 'error',
-        onClose: () => setScreen('home'),
-      })
-    })
+
+    peer.current?.on('close', handleDisconnect)
+    peer.current?.on('disconnected', handleDisconnect)
   }, [isHost])
+
+  const handleDisconnect = message => sendMessage({
+    type: 'DISCONNECTION',
+    message,
+  })
 
   const handleSelect = element => sendMessage({
     type: 'SELECTION',
     message: element,
   })
 
+  const destroyConnection = () => peer.current?.destroy()
+
   return (
     <>
       {
         isConnected ?
-          <Game multiPlayer opponentSelectedElement={opponentElement} onSelect={handleSelect} onClear={setOpponentElement} /> :
+          <Game multiPlayer opponentSelectedElement={opponentElement} onSelect={handleSelect} onClear={setOpponentElement} onExit={destroyConnection} /> :
           (
             isHost ?
               <Invitation hostId={hostId} /> :
