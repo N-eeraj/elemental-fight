@@ -35,6 +35,7 @@ const Play = ({ multiPlayer, opponentSelectedElement, onSelect, onClear, onExit 
   }
 
   const contextOptions = {
+    multiPlayer,
     score,
     opponent,
     playerElement,
