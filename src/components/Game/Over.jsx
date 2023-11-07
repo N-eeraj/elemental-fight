@@ -4,12 +4,13 @@ import { GameContext } from '@game'
 import { MainContext } from '@/App'
 
 
-const Over = ({ restart }) => {
+const Over = ({ onRestart, onPlayAgain, onExit }) => {
   const { multiPlayer, score } = useContext(GameContext)
   const { setScreen } = useContext(MainContext)
   const result = score.player < score.opponent ? 'Lose' : 'Win'
 
   const exit = () => {
+    onExit()
     window.history.pushState({ path: origin }, '', origin)
     setScreen('home')
   }
@@ -26,17 +27,22 @@ const Over = ({ restart }) => {
       </div>
 
       <div className='flex flex-col items-center gap-y-6'>
-        {
+      {
           multiPlayer ?
-            <Button className='w-32' onClick={exit}>
-              Exit
-            </Button> :
+            <>
+              <Button className='w-full' onClick={onPlayAgain}>
+                Play Again
+              </Button>
+              <Button className='w-full' onClick={exit}>
+                Exit
+              </Button>
+            </> :
             <>
               <h3 className='text-6xl'>
                 Play Again ?
               </h3>
               <div className='flex gap-x-6 w-full'>
-                <Button className='w-1/2' onClick={restart}>
+                <Button className='w-1/2' onClick={onRestart}>
                   Yes
                 </Button>
                 <Button className='w-1/2' onClick={() => setScreen('home')}>
@@ -44,7 +50,7 @@ const Over = ({ restart }) => {
                 </Button>
               </div>
             </>
-        }
+      }
       </div>
     </div>
   )

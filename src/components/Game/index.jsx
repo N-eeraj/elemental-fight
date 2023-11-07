@@ -99,6 +99,13 @@ const Play = ({ multiPlayer, opponentSelectedElement, onSelect, onClear, onExit 
     }
   }
 
+  const handlePlayAgain = () => {
+    setScore({
+      player: 0,
+      opponent: 0,
+    })
+  }
+
   useEffect(() => {
     if (playerElement && opponentElement)
       calculateResult()
@@ -117,7 +124,7 @@ const Play = ({ multiPlayer, opponentSelectedElement, onSelect, onClear, onExit 
   return (
     <GameContext.Provider value={contextOptions}>
       {
-        isGameOver ? <GameOver restart={handleRestart} /> :
+        isGameOver ? <GameOver onRestart={handleRestart} onPlayAgain={handlePlayAgain} onExit={navigateToHome} /> :
 
         <div className='flex flex-col items-center h-full px-6 py-12'>
           <Close dark onClick={navigateToHome} />

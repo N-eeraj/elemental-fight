@@ -68,6 +68,7 @@ const MultiPlayer = () => {
 
   useEffect(() => {
     setIsHost(getMatchId() ? false : true)
+    return destroyConnection
   }, [])
 
   useEffect(() => {
@@ -98,10 +99,13 @@ const MultiPlayer = () => {
     peer.current?.on('disconnected', handleDisconnect)
   }, [isHost])
 
-  const handleDisconnect = message => sendMessage({
-    type: 'DISCONNECTION',
-    message,
-  })
+  const handleDisconnect = message => {
+    window.history.pushState({ path: origin }, '', origin)
+    sendMessage({
+      type: 'DISCONNECTION',
+      message,
+    })
+  }
 
   const handleSelect = element => sendMessage({
     type: 'SELECTION',
@@ -114,7 +118,7 @@ const MultiPlayer = () => {
     <>
       {
         isConnected ?
-          <Game multiPlayer opponentSelectedElement={opponentElement} onSelect={handleSelect} onClear={setOpponentElement} onExit={destroyConnection} /> :
+          <Game multiPlayer opponentSelectedElement={opponentElement} onSelect={handleSelect} onClear={setOpponentElement} onExit={handleDisconnect} /> :
           (
             isHost ?
               <Invitation hostId={hostId} /> :
