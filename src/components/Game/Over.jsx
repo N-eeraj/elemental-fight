@@ -10,7 +10,8 @@ const Over = ({ onRestart, onPlayAgain, onExit }) => {
   const result = score.player < score.opponent ? 'Lose' : 'Win'
 
   const exit = () => {
-    onExit()
+    if (onExit)
+      onExit()
     window.history.pushState({ path: origin }, '', origin)
     setScreen('home')
   }

@@ -1,12 +1,16 @@
-import { useContext } from 'react'
+import { useEffect, useContext } from 'react'
 import Close from '@components/Close'
 import { MainContext } from '@/App'
 import rules from '@assets/rules.json'
-import elementRules from '@assets/rules.svg'
+import elementRules from '@images/rules.svg'
 
 const Rules = () => {
-  const { setScreen } = useContext(MainContext)
+  const { setScreen, setAudioFile } = useContext(MainContext)
   const navigateToHome = () => setScreen('home')
+
+  useEffect(() => {
+    setAudioFile('screen')
+  }, [])
 
   return (
     <div className='flex flex-col gap-y-8 magestic-screen py-6 md:px-9'>

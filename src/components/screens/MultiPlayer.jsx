@@ -18,9 +18,9 @@ const MultiPlayer = () => {
   const [isConnected, setIsConnected] = useState(false)
   const [opponentElement, setOpponentElement] = useState(null)
 
-  const { setScreen, $toast } = useContext(MainContext)
+  const { setScreen, setAudioFile, $toast } = useContext(MainContext)
 
-  const sendMessage = message => connection.current.send(JSON.stringify(message))
+  const sendMessage = message => connection.current?.send(JSON.stringify(message))
   const handleMessage = () => connection.current.on('data', data => {
     const { type, message } = JSON.parse(data)
     switch (type) {
@@ -68,6 +68,7 @@ const MultiPlayer = () => {
 
   useEffect(() => {
     setIsHost(getMatchId() ? false : true)
+    setAudioFile('screen')
     return destroyConnection
   }, [])
 

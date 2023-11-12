@@ -1,16 +1,20 @@
-import { useContext } from 'react'
+import { useEffect, useContext } from 'react'
 import Button from '@components/Button'
 import Sparkle from '@animations/Sparkle'
 import { MainContext } from '@/App'
 
 const Home = () => {
-  const { setScreen } = useContext(MainContext)
+  const { setScreen, setAudioFile } = useContext(MainContext)
 
   const menuOptions = [
     { text: 'Single Player', value: 'singlePlayer', },
     { text: 'Multi Player', value: 'multiPlayer', },
     { text: 'Rules', value: 'rules', },
   ]
+
+  useEffect(() => {
+    setAudioFile('screen')
+  }, [])
 
   return (
     <>
