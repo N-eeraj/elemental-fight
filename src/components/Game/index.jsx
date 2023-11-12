@@ -21,7 +21,7 @@ const Play = ({ multiPlayer, opponentSelectedElement, onSelect, onClear, onExit 
 
   const opponent = multiPlayer ? 'Opponent' : 'CPU'
 
-  const { setScreen } = useContext(MainContext)
+  const { setScreen, setAudioFile } = useContext(MainContext)
 
   const [playerElement, setPlayerElement] = useState(null)
   const [opponentElement, setOpponentElement] = useState(null)
@@ -30,7 +30,8 @@ const Play = ({ multiPlayer, opponentSelectedElement, onSelect, onClear, onExit 
   const isGameOver = Object.values(score).some(value => value === 3)
 
   const navigateToHome = () => {
-    onExit()
+    if (onExit)
+      onExit()
     setScreen('home')
   }
 
@@ -119,6 +120,7 @@ const Play = ({ multiPlayer, opponentSelectedElement, onSelect, onClear, onExit 
   useEffect(() => {
     if (!multiPlayer)
       cpuSelection()
+    setAudioFile('game')
   }, [])
 
   return (

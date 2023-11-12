@@ -1,5 +1,6 @@
 import {
   useState,
+  useRef,
   useEffect,
   createContext,
 } from 'react'
@@ -8,12 +9,17 @@ import Home from '@screens/Home'
 import SinglePlayer from '@screens/SinglePlayer'
 import MultiPlayer from '@screens/MultiPlayer'
 import Rules from '@screens/Rules'
+import { bgm } from '@utils/audios'
 import 'react-toastify/dist/ReactToastify.css'
 
 export const MainContext = createContext()
 
 const App = () => {
   const [screen, setScreen] = useState('home')
+  const [audioFile, setAudioFile] = useState(null)
+  const [userInteracted, setUserInteracted] = useState(false)
+  const audio = useRef(null)
+
   const $toast = (text, { type, theme, autoClose, onClose } = {}) => toast(text, {
     type: type ?? 'default',
     theme: theme ?? 'colored',
@@ -36,15 +42,26 @@ const App = () => {
     }
   })()
 
+  const handleUserInteraction = () => setUserInteracted(true)
+
   useEffect(() => {
     window.onbeforeunload = () => true
     const query = new URLSearchParams(window.location.search)
     if (query.get('matchId')) setScreen('multiPlayer')
   }, [])
 
+  useEffect(() => {
+    if (!(audioFile && userInteracted)) return
+    if (audio.current)
+      audio.current.pause()
+    audio.current = new Audio(bgm[audioFile])
+    audio.current.loop = true
+    audio.current.play()
+  }, [audioFile, userInteracted])
+
   return (
-    <div className='w-screen h-screen'>
-      <MainContext.Provider value={{ setScreen, $toast }}>
+    <div className='w-screen h-screen' onClick={handleUserInteraction}>
+      <MainContext.Provider value={{ setScreen, setAudioFile, $toast }}>
         {currentScreen}
       </MainContext.Provider>
       <ToastContainer limit={1} />
