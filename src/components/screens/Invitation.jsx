@@ -29,7 +29,7 @@ const Invitation = ({ hostId }) => {
     }
   }
 
-  const url = `${location.origin}?matchId=${hostId}`
+  const url = `${location.origin}${import.meta.env.BASE_URL}?matchId=${hostId}`
   const revealClass = hostId ? '' : 'opacity-0 translate-y-5 scale-75'
 
   return (
