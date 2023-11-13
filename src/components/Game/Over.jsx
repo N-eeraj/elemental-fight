@@ -1,8 +1,8 @@
-import { useContext } from 'react'
+import { useEffect, useContext } from 'react'
 import Button from '@components/Button'
 import { GameContext } from '@game'
 import { MainContext } from '@/App'
-
+import { effects } from '@utils/audios'
 
 const Over = ({ onRestart, onPlayAgain, onExit }) => {
   const { multiPlayer, score } = useContext(GameContext)
@@ -15,6 +15,11 @@ const Over = ({ onRestart, onPlayAgain, onExit }) => {
     window.history.pushState({ path: origin }, '', origin)
     setScreen('home')
   }
+
+  useEffect(() => {
+    const audio = new Audio(effects[result === 'Win' ? 'win' : 'lose'])
+    audio.play()
+  }, [])
 
   return (
     <div className='flex flex-col justify-center items-center gap-y-16 magestic-screen text-white font-title'>
