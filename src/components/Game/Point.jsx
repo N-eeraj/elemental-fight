@@ -1,14 +1,16 @@
 import { useEffect, useContext } from 'react'
 import { HiStar } from 'react-icons/hi'
+import { MainContext } from '@/App'
 import { GameContext } from '@game'
 import { effects } from '@utils/audios'
 
 const Point = ({ opponent = false }) => {
+  const { sound } = useContext(MainContext)
   const gameContext = useContext(GameContext)
   const points = gameContext?.score[opponent ? 'opponent' : 'player']
 
   useEffect(() => {
-    if (!points) return
+    if (!points || !sound) return
     const audio = new Audio(effects[opponent ? 'opponentPoint' : 'point'])
     audio.play()
   }, [points])

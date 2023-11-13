@@ -18,6 +18,7 @@ const App = () => {
   const [screen, setScreen] = useState('home')
   const [audioFile, setAudioFile] = useState(null)
   const [userInteracted, setUserInteracted] = useState(false)
+  const [sound, setSound] = useState(true)
   const audio = useRef(null)
 
   const $toast = (text, { type, theme, autoClose, onClose } = {}) => toast(text, {
@@ -54,15 +55,19 @@ const App = () => {
     if (!(audioFile && userInteracted)) return
     if (audio.current)
       audio.current.pause()
+    if (!sound)
+      return audio.current.pause()
     audio.current = new Audio(bgm[audioFile])
     audio.current.loop = true
     audio.current.volume = 0.25
     audio.current.play()
-  }, [audioFile, userInteracted])
+  }, [audioFile, sound, userInteracted])
+
+  const contextOptions = { sound, setScreen, setSound, setAudioFile, $toast }
 
   return (
     <div className='w-screen h-screen' onClick={handleUserInteraction}>
-      <MainContext.Provider value={{ setScreen, setAudioFile, $toast }}>
+      <MainContext.Provider value={contextOptions}>
         {currentScreen}
       </MainContext.Provider>
       <ToastContainer limit={1} />

@@ -1,12 +1,12 @@
 import { useEffect, useContext } from 'react'
 import Button from '@components/Button'
-import { GameContext } from '@game'
 import { MainContext } from '@/App'
+import { GameContext } from '@game'
 import { effects } from '@utils/audios'
 
 const Over = ({ onRestart, onPlayAgain, onExit }) => {
   const { multiPlayer, score } = useContext(GameContext)
-  const { setScreen } = useContext(MainContext)
+  const { sound, setScreen } = useContext(MainContext)
   const result = score.player < score.opponent ? 'Lose' : 'Win'
 
   const exit = () => {
@@ -17,6 +17,7 @@ const Over = ({ onRestart, onPlayAgain, onExit }) => {
   }
 
   useEffect(() => {
+    if (!sound) return
     const audio = new Audio(effects[result === 'Win' ? 'win' : 'lose'])
     audio.play()
   }, [])

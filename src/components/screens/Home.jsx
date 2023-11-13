@@ -1,10 +1,11 @@
 import { useEffect, useContext } from 'react'
 import Button from '@components/Button'
 import Sparkle from '@animations/Sparkle'
+import { ImVolumeMedium, ImVolumeMute2 } from 'react-icons/im'
 import { MainContext } from '@/App'
 
 const Home = () => {
-  const { setScreen, setAudioFile } = useContext(MainContext)
+  const { sound, setScreen, setSound, setAudioFile } = useContext(MainContext)
 
   const menuOptions = [
     { text: 'Single Player', value: 'singlePlayer', },
@@ -15,10 +16,15 @@ const Home = () => {
   useEffect(() => {
     setAudioFile('screen')
   }, [])
+  
 
   return (
     <>
       <Sparkle />
+
+      <Button className='!fixed scale-75' onClick={() => setSound(!sound)}>
+        { sound ? <ImVolumeMedium className='text-primary' /> : <ImVolumeMute2 className='text-primary'/> }
+      </Button>
 
       <div className='flex flex-col justify-center items-center gap-y-20 md:gap-y-12 magestic-screen px-10'>
         <h1 className='text-white text-6xl md:text-7xl text-center font-title leading-tight'>
