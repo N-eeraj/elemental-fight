@@ -6,7 +6,7 @@ import win from '@audios/effects/win.mp3'
 import lose from '@audios/effects/lose.mp3'
 
 export const bgm = { game, screen }
-export const effect = {
+export const effects = {
   point,
   opponentPoint,
   win,

@@ -88,7 +88,7 @@ const Play = ({ multiPlayer, opponentSelectedElement, onSelect, onClear, onExit 
         onClear()
       if (!multiPlayer)
         cpuSelection()
-    }, 2500)
+    }, 800)
   }
 
   const handleRestart = () => {

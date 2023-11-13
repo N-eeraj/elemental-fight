@@ -1,10 +1,17 @@
-import { useContext } from 'react'
+import { useEffect, useContext } from 'react'
 import { HiStar } from 'react-icons/hi'
 import { GameContext } from '@game'
+import { effects } from '@utils/audios'
 
-const Point = ({ opponent }) => {
+const Point = ({ opponent = false }) => {
   const gameContext = useContext(GameContext)
   const points = gameContext?.score[opponent ? 'opponent' : 'player']
+
+  useEffect(() => {
+    if (!points) return
+    const audio = new Audio(effects[opponent ? 'opponentPoint' : 'point'])
+    audio.play()
+  }, [points])
 
   return (
     <div className='flex flex-col gap-y-2 w-32 md:w-40'>

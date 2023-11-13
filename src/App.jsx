@@ -56,6 +56,7 @@ const App = () => {
       audio.current.pause()
     audio.current = new Audio(bgm[audioFile])
     audio.current.loop = true
+    audio.current.volume = 0.25
     audio.current.play()
   }, [audioFile, userInteracted])
 
